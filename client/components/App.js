@@ -64,11 +64,16 @@ class App extends Component {
 
     }
 
+    updatePatient(event){
+        event.preventDefault();
+        console.log(event.target.parentElement);
+    };
+
     render() {
         const ShowForm = this.state.openForm && <AddNewPatient onPatientAdd={this.handlePatientAdd.bind(this)}/>;
 
         const ShowTable =
-            <div className="main-table-container" onClick={this.onClickEvent.bind(this)}>
+            <div className="main-table-container" onClick={this.onClickEvent.bind(this)} onContextMenu={this.updatePatient.bind(this)}>
             <Table patients={this.state.patients}  />
         </div>;
 
