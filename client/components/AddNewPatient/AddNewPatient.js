@@ -13,14 +13,23 @@ class AddNewPatient extends Component{
                 name: '',
                 arrivalTime:'2018-01-01T00:00',
                 birthDate: '',
+                gender:'',
                 residencePermit:'',
                 provisionalDiagnosis:'',
                 hospitalizationUnit:'',
-                medicalReferrals:'',
-                finalDiagnosis:'',
-                dischargeDate:'2018-01-01T00:00',
                 firstAid:'',
+                refusalOfHospitalization:'',
+                timeOfDeath: ''
             }
+    }
+    setDate(){
+        if (this.state.timeOfDeath==='2018-01-01T00:00'){
+            console.log("true");
+        } else {
+            console.log("false")};
+    }
+    initializeDate(){
+
     }
 
     componentDidMount() {
@@ -54,14 +63,14 @@ class AddNewPatient extends Component{
     handleHospitalizationUnitChange(event) {
         this.setState({ hospitalizationUnit: event.target.value });
     }
-    handleMedicalReferralsChange(event) {
-        this.setState({ medicalReferrals: event.target.value });
+    handleGenderChange(event) {
+        this.setState({ gender: event.target.value });
     }
-    handleFinalDiagnosisChange(event) {
-        this.setState({ finalDiagnosis: event.target.value });
+    handleRefusalOfHospitalizationChange(event) {
+        this.setState({ refusalOfHospitalization: event.target.value });
     }
-    handleDischargeDateChange(event) {
-        this.setState({ dischargeDate: event.target.value });
+    handleTimeOfDeathChange(event) {
+        this.setState({ timeOfDeath: event.target.value });
     }
     handleFirstAidChange(event) {
         this.setState({ firstAid: event.target.value });
@@ -69,16 +78,16 @@ class AddNewPatient extends Component{
 
     handlePatientAdd() {
         const newPatient = {
-            name: this.state.name,
+            name:  this.state.name,
             arrivalTime: this.state.arrivalTime,
-            birthDate: this.state.birthDate,
-            residencePermit:this.state.residencePermit,
-            provisionalDiagnosis:this.state.provisionalDiagnosis,
-            hospitalizationUnit:this.state.hospitalizationUnit,
-            medicalReferrals:this.state.medicalReferrals,
-            finalDiagnosis:this.state.finalDiagnosis,
-            dischargeDate:this.state.dischargeDate,
-            firstAid:this.state.firstAid,
+            birthDate:  this.state.birthDate,
+            gender: this.state.gender,
+            residencePermit: this.state.residencePermit,
+            provisionalDiagnosis: this.state.provisionalDiagnosis,
+            hospitalizationUnit: this.state.hospitalizationUnit,
+            firstAid: this.state.firstAid,
+            refusalOfHospitalization: this.state.refusalOfHospitalization,
+            timeOfDeath:  this.state.timeOfDeath,
         };
         console.log("arrivalTime : "+this.state.arrivalTime);
         console.log("dischargeDate : "+this.state.dischargeDate);
@@ -87,13 +96,13 @@ class AddNewPatient extends Component{
             name: '',
             arrivalTime:'2018-01-01T00:00',
             birthDate: '',
+            gender:'',
             residencePermit:'',
             provisionalDiagnosis:'',
             hospitalizationUnit:'',
-            medicalReferrals:'',
-            finalDiagnosis:'',
-            dischargeDate:'2018-01-01T00:00',
             firstAid:'',
+            refusalOfHospitalization:'',
+            timeOfDeath: '2018-01-01T00:00',
         });
     }
 
@@ -127,7 +136,7 @@ class AddNewPatient extends Component{
 
     render(){
         return(
-            <div className="form-container">
+            <div className="form-container main">
                 <form>
                     <span className="field">
                         <label for="name">ПІП</label>
@@ -153,7 +162,14 @@ class AddNewPatient extends Component{
                         />
                     </span>
                     <span className="field">
-                        <label for="residencePermit" >Прописка</label>
+                        <label for="gender" >Стать</label>
+                        <input type="text" id="gender"
+                               value={this.state.gender}
+                               onChange={this.handleGenderChange.bind(this)}
+                        />
+                    </span>
+                    <span className="field">
+                        <label for="residencePermit">Прописка</label>
                         <input type="text" id="residencePermit"
                                ref="residencePermit"
                                value={this.state.residencePermit}
@@ -175,36 +191,30 @@ class AddNewPatient extends Component{
                         />
                     </span>
                     <span className="field">
-                        <label for="medicalReferrals">Направлення</label>
-                        <input type="text" id="medicalReferrals"
-                               value={this.state.medicalReferrals}
-                               onChange={this.handleMedicalReferralsChange.bind(this)}
-                        />
-                    </span>
-                    <span className="field">
-                        <label for="finalDiagnosis">Кінцевий діагноз</label>
-                        <textarea id="finalDiagnosis"
-                                  value={this.state.finalDiagnosis}
-                                  onChange={this.handleFinalDiagnosisChange.bind(this)}
-                        />
-                    </span>
-                    <span className="field">
-                        <label for="dischargeDate">Дата виписки</label>
-                        <input type="datetime-local" id="dischargeDate"
-                               defaultValue={this.state.dischargeDate}
-                               onChange={this.handleDischargeDateChange.bind(this)}
-                        />
-                    </span>
-                    <span className="field">
                         <label for="firstAid">Перша надана допомога</label>
                         <textarea id="firstAid"
                                   value={this.state.firstAid}
                                   onChange={this.handleFirstAidChange.bind(this)}
                         />
                     </span>
+                    <span className="field">
+                        <label for="refusalOfHospitalization">Відмова від госпіталізації</label>
+                        <textarea id="refusalOfHospitalization"
+                                  value={this.state.refusalOfHospitalization}
+                                  onChange={this.handleRefusalOfHospitalizationChange.bind(this)}
+                        />
+                    </span>
+                    <span className="field">
+                        <label for="timeOfDeath">Час смерті</label>
+                        <input type="datetime-local" id="timeOfDeath"
+                               defaultValue={this.state.timeOfDeath}
+                               onChange={this.handleTimeOfDeathChange.bind(this)}
+                        />
+                    </span>
                     <button
                         disabled={!this.state.name}
                         onClick={this.handlePatientAdd.bind(this)}
+                        title="Введіть усі необхідні поля"
                     >
                         Add
                     </button>

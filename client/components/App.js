@@ -65,8 +65,10 @@ class App extends Component {
     }
 
     updatePatient(event){
+        let i = event.target.parentElement;
         event.preventDefault();
-        console.log(event.target.parentElement);
+        console.log(i);
+        console.log(i.getAttribute('uniqueId'));
     };
 
     render() {

@@ -6,19 +6,19 @@ import './table.css';
 
 class Table extends Component{
 
-
 render(){
         const patientArray=this.props.patients.map(patient =>
-            <RegisteredPatient key={patient._id}
+            <RegisteredPatient key={patient.id}
+                               id={patient.id}
                                name={patient.name}
                                arrivalTime={patient.arrivalTime}
                                birthDate={patient.birthDate}
+                               gender={patient.gender}
                                residencePermit={patient.residencePermit}
                                provisionalDiagnosis={patient.provisionalDiagnosis}
                                hospitalizationUnit={patient.hospitalizationUnit}
-                               medicalReferrals={patient.medicalReferrals}
-                               finalDiagnosis={patient.finalDiagnosis}
-                               dischargeDate={patient.dischargeDate}
+                               medicalReferrals={patient.refusalOfHospitalization}
+                               dischargeDate={patient.timeOfDeath}
                                firstAid={patient.firstAid}
 
             />
