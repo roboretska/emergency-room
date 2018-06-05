@@ -1,0 +1,10 @@
+.secondary-table-container{
+    box-sizing: border-box;
+    float:left;
+    border-bottom: 2px solid rgb(166, 166, 166);
+    border-right: 2px solid rgb(166, 166, 166);
+    border-top: 2px solid rgb(166, 166, 166);
+    height: 500px;
+    overflow: scroll;
+    width: 25%;
+}

@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+}
+
+body {
+    font-family: 'Play', sans-serif;
+}
+
+#root {
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(229, 229, 230);
+    margin:0;
+
+}
