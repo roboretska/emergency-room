@@ -20,19 +20,35 @@ export function getListByName(name) {
     return Patient.find({name: name});
 }
 
+export function updatePatient(id, data) {
+    return Patient.findById(id).set({
+            name:   data.name,
+            arrivalTime: data.arrivalTime,
+            birthDate:  data.birthDate,
+            gender : data.gender,
+            residencePermit:  data.residencePermit,
+            provisionalDiagnosis:  data.provisionalDiagnosis,
+            hospitalizationUnit:  data.hospitalizationUnit,
+            firstAid:  data.firstAid,
+            refusalOfHospitalization: data.refusalOfHospitalization,
+            timeOfDeath:  data.timeOfDeath
+        }
+
+    );
+}
+
 export function addPatient(data) {
     const note = new Patient({
-        index: data.index,
         name:   data.name,
-        arrivalTime:  data.arrivalTime,
-        birthDate: data.birthDate,
-        residencePermit: data.residencePermit,
-        provisionalDiagnosis: data.provisionalDiagnosis,
-        hospitalizationUnit: data.hospitalizationUnit,
-        finalDiagnosis: data.finalDiagnosis,
-        medicalReferrals: data.medicalReferrals,
-        dischargeDate: data.dischargeDate,
-        firstAid: data.firstAid
+        arrivalTime: data.arrivalTime,
+        birthDate:  data.birthDate,
+        gender : data.gender,
+        residencePermit:  data.residencePermit,
+        provisionalDiagnosis:  data.provisionalDiagnosis,
+        hospitalizationUnit:  data.hospitalizationUnit,
+        firstAid:  data.firstAid,
+        refusalOfHospitalization: data.refusalOfHospitalization,
+        timeOfDeath:  data.timeOfDeath
     });
 
     return note.save();

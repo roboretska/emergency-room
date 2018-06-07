@@ -33,6 +33,10 @@ app.get('/patients/:name', (req, res) => {
     db.getListByName(req.params.name).then(data => res.send(data));
 });
 
+app.put('/patients/:id', (req, res) => {
+    db.updatePatient(req.params.id, req.body).then(data => res.send(data));
+});
+
 const server = app.listen(serverPort, () => {
     console.log(`Server is up and running on port ${serverPort}`);
 });
