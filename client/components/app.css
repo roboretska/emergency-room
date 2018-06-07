@@ -39,3 +39,26 @@ button:hover {
 .active{
     background-color: #608185;
 }
+
+.helper{
+    padding: 10px;
+    border-radius: 100%;
+    background-color: rgb(229, 229, 230);
+    font-size: 20px;
+}
+input[type=text].search-field{
+    width: 20%;
+}
+
+.search-field{
+    margin-left: 30px;
+}
+.tooltip{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.helper:hover{
+    background-color:#6b5b95;
+    color:  rgb(229, 229, 230);
+}

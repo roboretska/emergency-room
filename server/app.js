@@ -33,7 +33,11 @@ app.get('/patients/:name', (req, res) => {
     db.getListByName(req.params.name).then(data => res.send(data));
 });
 
-app.put('/patients/:id', (req, res) => {
+app.get('/:id', (req, res) => {
+    db.getById(req.params.id).then(data => res.send(data));
+});
+
+app.put('/:id', (req, res) => {
     db.updatePatient(req.params.id, req.body).then(data => res.send(data));
 });
 

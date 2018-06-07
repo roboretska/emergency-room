@@ -19,6 +19,9 @@ export function patientList() {
 export function getListByName(name) {
     return Patient.find({name: name});
 }
+export function getById(id) {
+    return Patient.findById(id);
+}
 
 export function updatePatient(id, data) {
     return Patient.findById(id).set({

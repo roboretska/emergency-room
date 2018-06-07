@@ -1,0 +1,90 @@
+
+.form-container{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 10px 0;
+    height: 560px;
+    background-color: rgb(203, 218, 231);
+}
+
+.field {
+    clear:both;
+    text-align:right;
+    line-height:25px;
+    margin: 10px 10px 10px 20px;
+}
+label {
+    float:left;
+    padding-right:30px;}
+.main {
+    float:left;
+    width:80%;
+    margin: 30px 10%;
+    padding: 25px;
+}
+
+:disabled {
+    background-color: #878f99;
+}
+
+input[type=text], input[type=date], input[type=datetime-local], textarea{
+    width: 50%;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+p{
+    text-align: left;
+}
+.container-radio input {
+    position: absolute;
+    opacity: 0;
+}
+.container-radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+.container-radio:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container-radio input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container-radio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container-radio .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+.gender{
+    margin-right: 45%;
+}

@@ -55,7 +55,16 @@ const PatientActions = {
                 })
 
             );
-    }
+    },
+    updatePatient(id, data) {
+        api.updatePatient(id, data)
+            .then(() =>
+                this.loadPatients()
+            )
+            .catch(err =>
+                console.error(err)
+            );
+    },
 };
 
 export default PatientActions;

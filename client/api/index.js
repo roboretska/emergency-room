@@ -11,7 +11,10 @@ export default {
         return axios.post(`${apiPrefix}/patients`, data);
     },
     updatePatient(id, data){
-        return axios.post(`${apiPrefix}/patients/${id}`, data);
+        return axios.post(`${apiPrefix}/${id}`, data);
+    },
+    getPatientById(id){
+        return axios.get(`${apiPrefix}/${id}`);
     },
 
     getListByName(name){

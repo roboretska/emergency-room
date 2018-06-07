@@ -1,6 +1,6 @@
 import React,  {Component} from 'react';
 import PreviousVisits from './PreviousVisits.js';
-
+import TableHeaders from'../Table/TableHeaders'
 import './PreviousList.css'
 
 
@@ -9,6 +9,7 @@ class PreviousList extends Component{
     render(){
         return(
             <table >
+                <TableHeaders/>
                 <tbody>
                 {
                     this.props.patients.map(patient =>
