@@ -48,6 +48,8 @@ button:hover {
 }
 input[type=text].search-field{
     width: 20%;
+    border-radius: 4px;
+    padding: 5px 10px;
 }
 
 .search-field{

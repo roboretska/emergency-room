@@ -6,8 +6,23 @@ import './table.css';
 
 class Table extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isFail: false
+        }
+    }
+
+
+
+
+
+
 render(){
-        const patientArray=this.props.patients.map(patient =>
+    const err=this.state.isFail &&
+        <tr><td colSpan="10"     className="warning">
+            Таких пацієнтів не знайдено. Спробуйте ще раз.</td></tr>;
+    const patientArray= this.props.patients.map(patient =>
             <RegisteredPatient key={patient.id}
                                id={patient.id}
                                name={patient.name}
@@ -17,8 +32,8 @@ render(){
                                residencePermit={patient.residencePermit}
                                provisionalDiagnosis={patient.provisionalDiagnosis}
                                hospitalizationUnit={patient.hospitalizationUnit}
-                               medicalReferrals={patient.refusalOfHospitalization}
-                               dischargeDate={patient.timeOfDeath}
+                               refusalOfHospitalization={patient.refusalOfHospitalization}
+                               timeOfDeath={patient.timeOfDeath}
                                firstAid={patient.firstAid}
 
             />
@@ -29,6 +44,7 @@ render(){
                 <TableHeaders/>
                 </thead>
                 <tbody>
+                {err}
                 {patientArray}
                 </tbody>
 

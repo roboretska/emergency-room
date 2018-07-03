@@ -15,6 +15,11 @@ export function patientList() {
     return Patient.find().sort({ arrivalTime: -1 });
 }
 
+export function dbQuickSearch(value){
+    let regex = new RegExp(value, 'i');
+    return Patient.find( {name :  regex})
+}
+
 
 export function getListByName(name) {
     return Patient.find({name: name});
@@ -24,24 +29,28 @@ export function getById(id) {
 }
 
 export function updatePatient(id, data) {
-    return Patient.findById(id).set({
-            name:   data.name,
-            arrivalTime: data.arrivalTime,
-            birthDate:  data.birthDate,
-            gender : data.gender,
-            residencePermit:  data.residencePermit,
-            provisionalDiagnosis:  data.provisionalDiagnosis,
-            hospitalizationUnit:  data.hospitalizationUnit,
-            firstAid:  data.firstAid,
-            refusalOfHospitalization: data.refusalOfHospitalization,
-            timeOfDeath:  data.timeOfDeath
-        }
+    console.log(data);
+    let update = {
+        name:   data.name,
+        arrivalTime: data.arrivalTime,
+        birthDate:  data.birthDate,
+        gender : data.gender,
+        residencePermit:  data.residencePermit,
+        provisionalDiagnosis:  data.provisionalDiagnosis,
+        hospitalizationUnit:  data.hospitalizationUnit,
+        firstAid:  data.firstAid,
+        refusalOfHospitalization: data.refusalOfHospitalization,
+        timeOfDeath:  data.timeOfDeath
+    };
+    return Patient.findByIdAndUpdate(id, update);
 
-    );
+
 }
 
+
 export function addPatient(data) {
-    const note = new Patient({
+    console.log(data);
+    const patient = new Patient({
         name:   data.name,
         arrivalTime: data.arrivalTime,
         birthDate:  data.birthDate,
@@ -54,5 +63,5 @@ export function addPatient(data) {
         timeOfDeath:  data.timeOfDeath
     });
 
-    return note.save();
+    return patient.save();
 }

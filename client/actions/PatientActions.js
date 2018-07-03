@@ -61,10 +61,39 @@ const PatientActions = {
             .then(() =>
                 this.loadPatients()
             )
-            .catch(err =>
-                console.error(err)
+            .catch(err =>{
+                console.log(err);
+                console.error(err)}
             );
     },
+    login(user){
+        AppDispatcher.dispatch({
+            type: Constants.LOAD_TOKEN_REQUEST
+        });
+        api.login(user)
+            .then(response=> {
+                console.log(response.data);
+                AppDispatcher.dispatch({
+                    type: Constants.LOAD_TOKEN_SUCCESS,
+                    token: response.data
+                });
+            })
+            .catch(err=>
+                AppDispatcher.dispatch({
+                    type: Constants.LOAD_TOKEN_FAIL,
+                    error: err
+                }));
+    },
+    logout(){
+        AppDispatcher.dispatch({
+            type: Constants.DELETE_TOKEN_REQUEST
+        });
+        AppDispatcher.dispatch({
+            type: Constants.LOAD_TOKEN_SUCCESS,
+            token: ''
+        });
+    }
+
 };
 
 export default PatientActions;

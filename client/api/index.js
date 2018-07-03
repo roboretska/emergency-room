@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import { apiPrefix } from '../../config/config.json';
 
+
+
 export default {
     patientList(){
         return axios.get(`${apiPrefix}/patients`);
@@ -11,7 +13,7 @@ export default {
         return axios.post(`${apiPrefix}/patients`, data);
     },
     updatePatient(id, data){
-        return axios.post(`${apiPrefix}/${id}`, data);
+        return axios.put(`${apiPrefix}/${id}`, data);
     },
     getPatientById(id){
         return axios.get(`${apiPrefix}/${id}`);
@@ -19,5 +21,10 @@ export default {
 
     getListByName(name){
         return axios.get(`${apiPrefix}/patients/${name}`);
+    },
+
+    searchPatient(value){
+        return axios.get(`${apiPrefix}/search/${value}`);
     }
+
 }

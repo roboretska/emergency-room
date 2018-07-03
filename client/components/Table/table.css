@@ -33,3 +33,19 @@ tbody > tr:hover {background-color: rgb(242, 242, 242);}
     overflow: scroll;
     width: 75%;
 }
+.warning {
+    font-size:18px;
+    color: #C80000;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+td.date, th.date {
+    white-space: nowrap;
+}
+
+td, th{
+    padding: 5px;
+    text-align: left;
+}

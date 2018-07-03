@@ -1,5 +1,4 @@
 import React , {Component} from 'react';
-import { hot } from 'react-hot-loader'
 
 import Table from './Table/Table.js';
 import AddNewPatient from './Form/AddNewPatient.js';
@@ -18,13 +17,16 @@ import './tooltip.css';
 
 let previousClickedElement;
 let info=null;
+let search=null;
+let patientsSearch=null;
 
 function getStateFromFlux() {
     return{
         isLoading: PatientStore.isLoading(),
         patients: PatientStore.getPatients(),
         patientsByName:PatientsByNameStore.getPatients(),
-        openForm: false
+        openForm: false,
+
     }
 }
 
@@ -48,39 +50,67 @@ class App extends Component {
     }
 
     handlePatientAdd(data) {
-        if(info===null){
+        console.log(info);
+        console.log(data);
+        if(info==false){
+            console.log(info);
+            console.log("New user");
             PatientActions.addPatient(data);
         }else{
-            PatientActions.updatePatient(data.id, data);
+            console.log("Update");
+            console.log(info);
+            PatientActions.updatePatient(info._id, data);
         }
         info=null;
     }
 
     openForm() {
-        this.setState({openForm: !this.state.openForm})
+        this.setState({openForm: !this.state.openForm});
+        if(this.state.openForm==false){info='';}
     }
 
     onClickEvent(event){
         let i = event.target.parentElement;
         if(i){
             if(previousClickedElement)previousClickedElement.className = '';
-            PatientActions.getListByName(i.getAttribute('patientName'));
+            PatientActions.getListByName(i.getAttribute('patientname'));
             i.className="active";
             previousClickedElement = i;
         }
 
     }
 
+    search(event){
+        search=event.target.value;
+        api.searchPatient(search).then(data => {this.getSearchResult(data);});
+        if(!search){
+            patientsSearch=null;
+        }
+
+    }
+
+    getSearchResult(data){
+        patientsSearch = data.data;
+        console.log(patientsSearch);
+        if(patientsSearch.length){
+            this.setState({patients: patientsSearch});
+        }
+    }
+
     getInfo(data){
         info = data;
+        this.openForm();
     }
 
     updatePatient(event){
         let i = event.target.parentElement;
         event.preventDefault();
-        api.getPatientById(i.getAttribute('uniqueId')).then(({data}) =>{this.getInfo(data)});
-        this.state.openForm = !this.state.openForm;
+        api.getPatientById(i.getAttribute('uniqueid')).then(({data}) =>{this.getInfo(data)});
+
+
     };
+
+
     changeButtonName(){
         if(this.state.openForm===true){
             return "Повернутися до списку";
@@ -90,9 +120,9 @@ class App extends Component {
         }
     }
 
+
     render() {
         const ShowForm = this.state.openForm && <AddNewPatient onPatientAdd={this.handlePatientAdd.bind(this)} patientInfo={info}/>;
-
         const ShowTable =
             <div className="main-table-container" onClick={this.onClickEvent.bind(this)} onContextMenu={this.updatePatient.bind(this)}>
             <Table patients={this.state.patients}  />
@@ -111,8 +141,10 @@ class App extends Component {
             <div>
                 <div className="nav-container">
                     <button onClick={this.openForm.bind(this)}>{this.changeButtonName()}</button>
-                    <input className="search-field" type="text"/>
+                    <input className="search-field" type="text"
+                           value={this.state.searchField} onChange={this.search.bind(this)}/>
                     <button><i className="icon-search"/></button>
+                    <button >Вихід</button>
                     <div className="tooltip"><i className="icon-help helper"/>
                         <span className="tooltiptext">Tooltip text</span>
                     </div>
@@ -129,4 +161,4 @@ class App extends Component {
     }
 }
 
-export default hot(module)(App);
+export default App;

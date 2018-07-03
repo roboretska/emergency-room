@@ -15,15 +15,16 @@ function formatPatient(patient) {
         name: patient.name,
         arrivalTime: patient.arrivalTime,
         birthDate: patient.birthDate,
+        gender:patient.gender,
         residencePermit:patient.residencePermit,
         provisionalDiagnosis:patient.provisionalDiagnosis,
         hospitalizationUnit:patient.hospitalizationUnit,
-        medicalReferrals:patient.medicalReferrals,
-        finalDiagnosis:patient.finalDiagnosis,
-        dischargeDate:patient.dischargeDate,
-        firstAid: patient.firstAid
+        firstAid: patient.firstAid,
+        refusalOfHospitalization:patient.refusalOfHospitalization,
+        timeOfDeath: patient.timeOfDeath
 
     };
+
 }
 
 const TasksStore = Object.assign({}, EventEmitter.prototype, {
@@ -51,11 +52,11 @@ const TasksStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
     switch(action.type) {
         case AppConstants.LOAD_PATIENTS_REQUEST: {
-        _isLoading = true;
+            _isLoading = true;
 
-        TasksStore.emitChange();
-        break;
-    }
+            TasksStore.emitChange();
+            break;
+        }
 
         case AppConstants.LOAD_PATIENTS_SUCCESS: {
             _isLoading = false;

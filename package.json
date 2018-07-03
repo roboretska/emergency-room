@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "webpack-devserver": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8090 --host 0.0.0.0"
+    "webpack-devserver": "webpack-dev-server --mode=development --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8090 --host 0.0.0.0"
   },
   "author": {
     "name": "Hrystyna Roboretska",
@@ -14,10 +14,13 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "flux": "^3.1.3",
+    "jscs": "^3.0.7",
+    "jwt-simple": "^0.5.1",
     "keymirror": "^0.1.1",
     "mongoose": "^5.1.2",
     "react": "^16.3.2",
